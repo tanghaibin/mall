@@ -20,7 +20,7 @@
 	   http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <context:component-scan base-package="top.tanghaibin.mall.manager.web.controller"></context:component-scan>
+    <context:component-scan base-package="top.tanghaibin.mall.manager.web.controller"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -40,6 +40,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"></bean>
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
 
+    <mvc:resources mapping="/commons/**" location="/commons/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
 </beans>
