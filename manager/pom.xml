@@ -18,5 +18,27 @@
         <module>manager-web</module>
     </modules>
 
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>dev</id>
+            <properties>
+                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/mall?createDatabaseifNotExist=true&amp;Unicode=true&amp;characterEncoding=UTF-8]]></jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>root</jdbc.password>
+            </properties>
+        </profile>
+    </profiles>
 
+    <build>
+        <resources>
+            <resource>
+                <!-- 扫描替换 -->
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>
