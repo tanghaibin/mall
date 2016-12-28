@@ -26,6 +26,8 @@
             <id>dev</id>
             <properties>
                 <jdbc.url><![CDATA[jdbc:mysql://qdm17204973.my3w.com:3306/qdm17204973_db?createDatabaseifNotExist=true&amp;Unicode=true&amp;characterEncoding=UTF-8]]></jdbc.url>
+                <log_dir>F:\mall\error\</log_dir>
+                <maxHistory>6</maxHistory>
             </properties>
         </profile>
     </profiles>
