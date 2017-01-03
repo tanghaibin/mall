@@ -1,13 +1,12 @@
 package top.tanghaibin.mall.manager.service;
 
+import org.springframework.stereotype.Service;
 import top.tanghaibin.mall.manager.pojo.ItemCat;
 
-import java.util.List;
-
 /**
- * Created by tangh on 2016/12/27.
+ * Created by tangh on 2017/1/2.
  */
-public interface ItemCatService {
+@Service
+public class ItemCatService extends BaseService<ItemCat> {
 
-    List<ItemCat> queryItemCatListByParentId(Long parentId);
 }

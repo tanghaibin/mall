@@ -37,6 +37,7 @@
         <commons-lang.version>2.6</commons-lang.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.22</slf4j.version>
+        <logback.version>1.1.8</logback.version>
     </properties>
 
     <dependencyManagement>
@@ -201,6 +202,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

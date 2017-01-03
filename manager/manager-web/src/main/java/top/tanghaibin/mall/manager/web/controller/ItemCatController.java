@@ -26,7 +26,9 @@ public class ItemCatController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ItemCat>> queryItemCatListByParentId(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
         try {
-            List<ItemCat> itemCats = itemCatService.queryItemCatListByParentId(parentId);
+            ItemCat itemCat = new ItemCat();
+            itemCat.setParentId(parentId);
+            List<ItemCat> itemCats = itemCatService.queryListByWhere(itemCat);
             if (CollectionUtils.isEmpty(itemCats)) {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
             }
