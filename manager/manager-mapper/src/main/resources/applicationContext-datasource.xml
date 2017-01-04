@@ -57,7 +57,7 @@
 
     <tx:advice id="tx-advice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="create*" rollback-for="java.lang.Exception"/>
+            <tx:method name="save*" rollback-for="java.lang.Exception"/>
             <tx:method name="delete*" rollback-for="java.lang.Exception"/>
             <tx:method name="update*" rollback-for="java.lang.Exception"/>
             <tx:method name="search*" read-only="true"/>

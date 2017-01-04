@@ -15,10 +15,10 @@ public class ItemService extends BaseService<Item> {
     private ItemDescService itemDescService;
 
     public void saveItem(Item item, String desc) {
-
         super.save(item);
         ItemDesc itemDesc = new ItemDesc();
         itemDesc.setItemDesc(desc);
+        itemDesc.setItemId(item.getId());
         itemDescService.save(itemDesc);
     }
 }

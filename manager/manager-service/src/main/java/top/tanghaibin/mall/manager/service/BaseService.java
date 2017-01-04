@@ -41,6 +41,8 @@ public abstract class BaseService<T extends BasePojo> {
     }
 
     public Integer save(T record) {
+        record.setCreated(new Date());
+        record.setUpdated(record.getCreated());
         return mapper.insert(record);
     }
 

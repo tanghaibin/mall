@@ -14,22 +14,24 @@ import top.tanghaibin.mall.manager.service.ItemService;
  * Created by tangh on 2017/1/3.
  */
 @Controller
-@RequestMapping("item")
+@RequestMapping("rest/item")
 public class ItemController {
 
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping(value = "saveItem", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveItem(Item item, String desc) {
         if(StringUtils.isBlank(item.getTitle()) || StringUtils.isBlank(desc)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         try {
             item.setId(null);
+            item.setStatus(1);
             itemService.saveItem(item, desc);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
