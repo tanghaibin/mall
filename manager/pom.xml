@@ -28,6 +28,8 @@
                 <jdbc.url><![CDATA[jdbc:mysql://qdm17204973.my3w.com:3306/qdm17204973_db?createDatabaseifNotExist=true&amp;Unicode=true&amp;characterEncoding=UTF-8]]></jdbc.url>
                 <log_dir>F:\mall\log\</log_dir>
                 <maxHistory>6</maxHistory>
+                <REPOSITORY_PATH>F:\mall_image</REPOSITORY_PATH>
+                <IMAGE_BASE_URL>http://image.mall.com</IMAGE_BASE_URL>
             </properties>
         </profile>
     </profiles>

@@ -1,4 +1,4 @@
-package top.tanghaibin.commom.exception;
+package top.tanghaibin.common.exception;
 
 /**
  * Created by tanghaibin on 2016/12/27.

@@ -40,6 +40,13 @@ public abstract class BaseService<T extends BasePojo> {
         return new PageInfo<T>(mapper.select(record));
     }
 
+    public PageInfo<T> queryPageListByWhereAndOrderBy(Integer pageNumber, Integer pageSize, T record, String orderBy) {
+        PageHelper.startPage(pageNumber, pageSize);
+        Example example = new Example(record.getClass());
+        example.setOrderByClause(orderBy);
+        return new PageInfo<T>(mapper.selectByExample(example));
+    }
+
     public Integer save(T record) {
         record.setCreated(new Date());
         record.setUpdated(record.getCreated());

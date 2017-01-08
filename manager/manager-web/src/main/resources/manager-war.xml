@@ -22,6 +22,8 @@
 
     <context:component-scan base-package="top.tanghaibin.mall.manager.web.controller"/>
 
+    <context:property-placeholder location="classpath:evn.properties"></context:property-placeholder>
+
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
