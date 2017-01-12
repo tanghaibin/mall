@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.tanghaibin.common.bean.EasyUIResult;
 import top.tanghaibin.mall.manager.pojo.Item;
+import top.tanghaibin.mall.manager.pojo.ItemParam;
 import top.tanghaibin.mall.manager.service.ItemService;
 
 /**
@@ -24,14 +25,14 @@ public class ItemController {
     private ItemService itemService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> saveItem(Item item, String desc) {
+    public ResponseEntity<Void> saveItem(Item item, String itemParams, String desc) {
         if (StringUtils.isBlank(item.getTitle()) || StringUtils.isBlank(desc)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         try {
             item.setId(null);
             item.setStatus(1);
-            itemService.saveItem(item, desc);
+            itemService.saveItem(item, itemParams, desc);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             e.printStackTrace();
