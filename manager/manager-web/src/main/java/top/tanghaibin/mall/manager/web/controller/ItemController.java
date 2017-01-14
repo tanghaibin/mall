@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import top.tanghaibin.common.bean.EasyUIResult;
 import top.tanghaibin.mall.manager.pojo.Item;
 import top.tanghaibin.mall.manager.pojo.ItemParam;
 import top.tanghaibin.mall.manager.service.ItemService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  * Created by tangh on 2017/1/3.
@@ -24,7 +26,7 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<Void> saveItem(Item item, String itemParams, String desc) {
         if (StringUtils.isBlank(item.getTitle()) || StringUtils.isBlank(desc)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -40,7 +42,22 @@ public class ItemController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @PutMapping
+    public ResponseEntity<Void> updateItem(Item item, String itemParams, String desc, HttpServletRequest request) {
+        Enumeration parameterNames = request.getParameterNames();
+        if (StringUtils.isBlank(item.getTitle()) || StringUtils.isBlank(desc)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        try {
+            itemService.updateItem(item, itemParams, desc);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping
     public ResponseEntity<EasyUIResult> queryItemList(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                                       @RequestParam(value = "rows", defaultValue = "30") Integer rows) {
         try {

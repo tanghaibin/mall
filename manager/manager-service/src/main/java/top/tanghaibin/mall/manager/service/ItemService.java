@@ -7,6 +7,8 @@ import top.tanghaibin.mall.manager.pojo.Item;
 import top.tanghaibin.mall.manager.pojo.ItemDesc;
 import top.tanghaibin.mall.manager.pojo.ItemParamItem;
 
+import java.util.Date;
+
 /**
  * Created by tangh on 2017/1/3.
  */
@@ -29,6 +31,20 @@ public class ItemService extends BaseService<Item> {
             itemParamItem.setParamData(paramData);
             itemParamItem.setItemId(item.getId());
             itemParamItemService.save(itemParamItem);
+        }
+    }
+
+    public void updateItem(Item item, String paramData, String desc) {
+        super.updateBySelective(item);
+        ItemDesc itemDesc = new ItemDesc();
+        itemDesc.setItemDesc(desc);
+        itemDesc.setItemId(item.getId());
+        itemDescService.updateBySelective(itemDesc);
+        if(StringUtils.isNotBlank(paramData)) {
+            ItemParamItem itemParamItem = new ItemParamItem();
+            itemParamItem.setParamData(paramData);
+            itemParamItem.setItemId(item.getId());
+            itemParamItemService.updateItemParamItemByItemId(itemParamItem);
         }
     }
 }

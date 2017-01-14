@@ -22,6 +22,15 @@
     <filter-name>encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+<!--解决put方式获取不到参数bug-->
+  <filter>
+    <filter-name>httpPutFormContentFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>httpPutFormContentFilter</filter-name>
+    <servlet-name>mvc</servlet-name>
+  </filter-mapping>
 
   <servlet>
     <servlet-name>mvc</servlet-name>
@@ -30,6 +39,7 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:manager-war.xml</param-value>
     </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>mvc</servlet-name>

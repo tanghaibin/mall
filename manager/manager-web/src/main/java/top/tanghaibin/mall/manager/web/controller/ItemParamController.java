@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import top.tanghaibin.common.bean.EasyUIResult;
 import top.tanghaibin.mall.manager.pojo.ItemParam;
 import top.tanghaibin.mall.manager.service.ItemParamService;
@@ -23,8 +20,8 @@ public class ItemParamController {
     @Autowired
     private ItemParamService itemParamService;
 
-    @RequestMapping(value = "{itemCartId}", method = RequestMethod.GET)
-    public ResponseEntity<Void> queryItemParamByItemCartId(Long itemCartId) {
+    @GetMapping(value = "{itemCartId}")
+    public ResponseEntity<Void> queryItemParamByItemCartId(@PathVariable("itemCartId") Long itemCartId) {
         try {
             ItemParam itemParam = new ItemParam();
             itemParam.setItemCatId(itemCartId);
@@ -40,7 +37,7 @@ public class ItemParamController {
         }
     }
 
-    @RequestMapping(value = "{itemCartId}", method = RequestMethod.POST)
+    @PostMapping(value = "{itemCartId}")
     public ResponseEntity<Void> saveItemParam(ItemParam itemParam, @PathVariable("itemCartId") Long itemCartId) {
         try {
             itemParam.setItemCatId(itemCartId);
@@ -52,7 +49,7 @@ public class ItemParamController {
         }
     }
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @GetMapping(value = "list")
     public ResponseEntity<EasyUIResult> list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                              @RequestParam(value = "rows", defaultValue = "30") Integer rows) {
         try {
@@ -63,7 +60,7 @@ public class ItemParamController {
         }
     }
 
-    @RequestMapping(value = "query/itemcatid/{itemCartId}", method = RequestMethod.GET)
+    @GetMapping(value = "query/itemcatid/{itemCartId}")
     public ResponseEntity<ItemParam> query(@PathVariable(value = "itemCartId") Long itemCartId) {
         try{
             ItemParam itemParam = new ItemParam();
@@ -77,4 +74,5 @@ public class ItemParamController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
 }
