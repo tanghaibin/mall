@@ -20,7 +20,7 @@
 	   http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <context:component-scan base-package="top.tanghaibin.mall.manager.web.controller"/>
+    <context:component-scan base-package="top.tanghaibin.mall.manager.web.controller,top.tanghaibin.mall.manager.web.api"/>
 
     <context:property-placeholder location="classpath:evn.properties"></context:property-placeholder>
 
