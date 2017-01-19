@@ -25,14 +25,10 @@
     <context:property-placeholder location="classpath:evn.properties"></context:property-placeholder>
 
     <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/plain;charset=UTF-8</value>
-                        <value>text/html;charset=UTF-8</value>
-                    </list>
-                </property>
+        <mvc:message-converters register-defaults="true">
+            <!--继承 jackson 转换器；实现jsonp返回的格式-->
+            <bean class="top.tanghaibin.common.spring.convert.json.CallbackMappingJackson2HttpMessageConverter">
+                <property name="callbackName" value="callback" />
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
