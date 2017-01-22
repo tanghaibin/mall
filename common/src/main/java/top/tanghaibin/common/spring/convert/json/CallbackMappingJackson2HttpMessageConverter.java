@@ -1,6 +1,7 @@
 package top.tanghaibin.common.spring.convert.json;
 
 import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 public class CallbackMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {
 
@@ -19,7 +21,12 @@ public class CallbackMappingJackson2HttpMessageConverter extends MappingJackson2
 	private String callbackName;
 
 	@Override
-	protected void writeInternal(Object object, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+	protected void writePrefix(JsonGenerator generator, Object object) throws IOException {
+		super.writePrefix(generator, object);
+	}
+
+	@Override
+	protected void writeInternal(Object object, Type type, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
 		// 从threadLocal中获取当前的Request对象
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		String callbackParam = request.getParameter(callbackName);
